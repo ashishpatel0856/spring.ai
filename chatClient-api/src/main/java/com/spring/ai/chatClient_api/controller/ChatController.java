@@ -1,8 +1,5 @@
 package com.spring.ai.chatClient_api.controller;
-import com.spring.ai.chatClient_api.entity.Tut;
 import com.spring.ai.chatClient_api.service.ChatService;
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +49,7 @@ public class ChatController {
     }
 
    @GetMapping("/chat")
-    public ResponseEntity<Tut> chat(@RequestParam(value = "q",required = true) String msg) {
+    public ResponseEntity<String> chat(@RequestParam(value = "q",required = true) String msg) {
         return ResponseEntity.ok(chatService.chat(msg));
    }
 }

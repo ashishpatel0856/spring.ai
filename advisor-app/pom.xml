@@ -11,7 +11,7 @@
 	<groupId>com.spring.ai</groupId>
 	<artifactId>chatClient-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>chatClient-api</name>
+	<name>advisor-api</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
