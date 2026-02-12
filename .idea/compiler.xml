@@ -9,25 +9,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="first-Project" />
       </profile>
-      <profile name="Annotation profile for advisor-api" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
-        <module name="chatClient-api" />
-        <module name="chatClient-api (1)" />
-      </profile>
       <profile name="Annotation profile for memory-app" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="chatClient-api (2)" />
+        <module name="chatClient-api" />
+        <module name="chatClient-api (1)" />
       </profile>
     </annotationProcessing>
   </component>
