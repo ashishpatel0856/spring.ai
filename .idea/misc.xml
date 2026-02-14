@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/chatClient-api/pom.xml" />
         <option value="$PROJECT_DIR$/advisor-app/pom.xml" />
         <option value="$PROJECT_DIR$/memory-app/pom.xml" />
+        <option value="$PROJECT_DIR$/Rag-app/pom.xml" />
       </list>
     </option>
   </component>

@@ -3,20 +3,24 @@ package com.spring.ai.chatClient_api.service;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.document.Document;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class chatServiceImpl implements ChatService{
 
     private final ChatClient chatClient;
-
-    public chatServiceImpl(ChatClient chatClient) {
+    private final VectorStore vectorStore;
+    public chatServiceImpl(ChatClient chatClient, VectorStore vectorStore) {
         this.chatClient = chatClient;
+        this.vectorStore = vectorStore;
     }
 
     @Value("classpath:/prompts/user-message.st")
@@ -68,5 +72,15 @@ public class chatServiceImpl implements ChatService{
                 .stream()
                 .content();
     }
+
+    @Override
+    public void saveData(List<String> list) {
+        System.out.println("Saving documents: " + list.size());
+        List<Document> documentList = list.stream()
+                .map(Document::new)
+                .toList();
+        vectorStore.add(documentList);
+    }
+
 
 }
