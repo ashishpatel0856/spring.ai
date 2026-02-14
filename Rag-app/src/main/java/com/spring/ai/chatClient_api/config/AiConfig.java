@@ -6,8 +6,8 @@ import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SafeGuardAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.InMemoryChatMemoryRepository;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
-import org.springframework.ai.chat.memory.repository.jdbc.JdbcChatMemoryRepository;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +20,19 @@ public class AiConfig {
 
     private Logger  log = Logger.getLogger(String.valueOf(AiConfig.class));
 
-    @Bean
-    public ChatMemory chatMemory( JdbcChatMemoryRepository jdbcChatMemoryRepository) {
-        return  MessageWindowChatMemory.builder()
-                .chatMemoryRepository(jdbcChatMemoryRepository)
-                .maxMessages(10) // maxm 10 msg store
-                .build();
+//    @Bean
+//    public ChatMemory chatMemory( JdbcChatMemoryRepository jdbcChatMemoryRepository) {
+//        return  MessageWindowChatMemory.builder()
+//                .chatMemoryRepository(jdbcChatMemoryRepository)
+//                .maxMessages(10) // maxm 10 msg store
+//                .build();
+//
+//    }
 
+    @Bean
+    public ChatMemory chatMemory() {
+        InMemoryChatMemoryRepository memory = new InMemoryChatMemoryRepository();
+        return MessageWindowChatMemory.builder().maxMessages(10).chatMemoryRepository(memory).build();
     }
 
     @Bean
@@ -36,8 +42,8 @@ public class AiConfig {
         MessageChatMemoryAdvisor messageChatMemoryAdvisor = MessageChatMemoryAdvisor.builder(chatMemory).build();
 
         return builder
+
                 .defaultAdvisors(messageChatMemoryAdvisor,new TokenPrintAdvisor(), new SimpleLoggerAdvisor(),new SafeGuardAdvisor(List.of("games")))
-                .defaultSystem("You are a helpful coding assistant. You are an expert in coding.")
                 .defaultOptions(OpenAiChatOptions.builder()
 //                        .model("llama3-8b-8192")
 

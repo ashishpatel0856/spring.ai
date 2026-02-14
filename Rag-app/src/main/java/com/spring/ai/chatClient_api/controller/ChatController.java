@@ -22,7 +22,7 @@ public class ChatController {
         return ResponseEntity.ok(chatService.chatTemplate(msg,userId));
    }
 
-    @GetMapping("/memory-chat")
+    @GetMapping("/rag")
     public ResponseEntity<Flux<String>> streamChat(
             @RequestParam("q") String query,
             @RequestHeader("userId") String userId
