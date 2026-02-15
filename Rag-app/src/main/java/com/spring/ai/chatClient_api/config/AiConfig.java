@@ -45,7 +45,7 @@ public class AiConfig {
 
                 .defaultAdvisors(messageChatMemoryAdvisor,new TokenPrintAdvisor(), new SimpleLoggerAdvisor(),new SafeGuardAdvisor(List.of("games")))
                 .defaultOptions(OpenAiChatOptions.builder()
-//                        .model("llama3-8b-8192")
+//                        .model("text-embedding-3-small")
 
                         .temperature(0.3)
                         .maxTokens(200)

@@ -1,8 +1,6 @@
 package com.spring.ai.chatClient_api.service;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
-import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
@@ -13,9 +11,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
-import java.util.UUID;
 
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class chatServiceImpl implements ChatService{

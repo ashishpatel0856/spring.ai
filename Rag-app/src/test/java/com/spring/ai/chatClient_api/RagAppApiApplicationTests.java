@@ -6,17 +6,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = ChatClientApiApplication.class)
 class RagAppApiApplicationTests {
 
-
 	@Autowired
-	private  ChatService chatService;
+	private ChatService chatService;
+
 	@Test
 	void saveDataToVectorDatabase(){
 		System.out.println("saving data to database");
-		this.chatService.saveData(Helper.getData());
+		chatService.saveData(Helper.getData());
 		System.out.println("data is saved successfully");
 	}
 
+
 }
+

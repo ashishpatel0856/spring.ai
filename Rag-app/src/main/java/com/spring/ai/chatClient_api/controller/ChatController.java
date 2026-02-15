@@ -15,12 +15,15 @@ public class ChatController {
         this.chatService = chatService;
     }
 
-   @GetMapping("/chat")
-    public ResponseEntity<String> chat(@RequestParam(value = "q",required = true) String msg,
-                                       @RequestHeader("userId") String userId
-   ) {
-        return ResponseEntity.ok(chatService.chatTemplate(msg,userId));
-   }
+    @GetMapping("/chat")
+    public ResponseEntity<String> chat(
+            @RequestParam("q") String msg,
+            @RequestParam(value = "userId", required = false) String userId
+    ) {
+        if (userId == null) userId = "defaultUser";
+        return ResponseEntity.ok(chatService.chatTemplate(msg, userId));
+    }
+
 
     @GetMapping("/rag")
     public ResponseEntity<Flux<String>> streamChat(
